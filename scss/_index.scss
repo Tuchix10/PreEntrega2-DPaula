@@ -1,0 +1,80 @@
+.contenedor-grande {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 20px auto auto auto;
+}
+.formulario {
+    background-color: #1d9fd0;
+    padding: 10px;
+    box-shadow: 7px 13px 37px #262626;
+    border: 1px solid #262626;
+    border-radius: 10px;
+    width: 20vw;
+    margin: auto;
+    label {
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.8);
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 10px auto auto auto;
+    }
+    div {
+        display: flex;
+        flex-direction: column;
+        input {
+            text-align: center;
+            margin: 10px auto auto auto;
+        }
+    }
+}
+.boton-enviar {
+    margin: 10px auto auto auto;
+    padding: 5px 10px;
+    background-color: #262626;
+    border-color: #262626;
+    color: white;
+    border-radius: 5px;
+}
+.boton-enviar:hover {
+    background-color: #464646;
+    text-decoration: underline;
+    border-color: #464646;
+}
+.tabla-resultado {
+    width: auto;
+    margin: auto;
+    background-color: #1d9fd0;
+    padding: 10px;
+    box-shadow: 7px 13px 37px #262626;
+    border: 1px solid #262626;
+    border-radius: 10px;
+    height: fit-content;
+}
+.tab{
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'arial';
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 500px;
+    border-radius: 10px;
+    margin: 30px auto 30px auto;
+}
+thead{
+    font-weight: bold;
+}
+td{
+    border-radius: 10px;
+    color: white;
+}
+.calculo-total {
+    grid-area: total;
+    width: auto;
+    margin: auto;
+    background-color: #1d9fd0;
+    padding: 10px;
+    box-shadow: 7px 13px 37px #262626;
+    border: 1px solid #262626;
+    border-radius: 10px;
+    height: fit-content;
+}
+

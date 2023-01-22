@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <title>Biblioteca coderhouse</title>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a la biblioteca CoderHouse</h1>
+    </header>
+    <section class="contenedor-grande">
+        <div class="formulario">
+            <form action="">
+                <div>
+                    <h2>Ingreso de Libros</h2>
+                </div>
+                <div>
+                    <label for="titulo">Ingrese el título del libro</label>
+                    <input type="text" name="" id="titulo">
+                </div>
+                <div>
+                    <label for="codigo">Ingrese ISBN</label>
+                    <input type="text" name="" id="codigo">
+                </div>
+                <div>
+                    <label for="autor">Ingrese el nombre del autor</label>
+                    <input type="text" name="" id="autor">
+                </div>
+                <div>
+                    <label for="editorial">Ingrese la editorial</label>
+                    <input type="text" name="" id="editorial">
+                </div>
+                <div>
+                    <label for="año">Año de publicación</label>
+                    <input type="text" name="" id="año">
+                </div>
+                <div>
+                    <input type="button" value="Registrar" class="boton-enviar" onclick="registrarLibro()">
+                    <input type="button" value="Mostrar libreria" class="boton-enviar" onclick="generarTabla()">
+                </div>
+            </form>
+        </div>
+        <div class="formulario">
+            <div>
+                <h2>Busqueda de libros</h2>
+            </div>
+            <form action="">
+                <div>
+                    <label for="titulo-busqueda">Ingrese el título</label>
+                    <input type="text" name="" id="titulo-busqueda">
+                </div>
+                <div>
+                    <label for="autor-busqueda">Ingrese el autor</label>
+                    <input type="text" name="" id="autor-busqueda">
+                </div>
+                <div>
+                    <label for="editorial-busqueda">Ingrese la editorial</label>
+                    <input type="text" name="" id="editorial-busqueda">
+                </div>
+                <div>
+                    <label for="año-busqueda">Año de publicación</label>
+                    <input type="text" name="" id="año-busqueda">
+                </div>
+                <div>
+                    <label for="isbn-busqueda">ISBN</label>
+                    <input type="text" name="" id="isbn-busqueda">
+                </div>
+                <div>
+                    <input type="button" value="Enviar" class="boton-enviar" onclick="consultar()">
+                </div>
+            </form>
+        </div>
+        <div class="tabla-resultado">
+            <div>
+                <table class="tab">
+                    <thead>
+                        <tr>
+                            <td>Libro</td>
+                            <td>Autor</td>
+                            <td>Editorial</td>
+                            <td>Año</td>
+                            <td>ISBN</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tab">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section> <!--segunda section-->
+    <script src="config.js"></script>
+</body>
+</html>
