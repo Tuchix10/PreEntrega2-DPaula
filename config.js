@@ -1,5 +1,5 @@
 const tab = document.getElementById("tab");
-let libreria = [];
+const biblioteca = validarBaseDeDatos();
 
 class Libro {
     constructor( titulo , autor , editorial , año , codigo) {
@@ -31,6 +31,13 @@ function validarAño(anno) {
     return false;
 }
 
+function validarBaseDeDatos() {
+    if (localStorage.length != 0) {
+        return libreria = JSON.parse(localStorage.getItem("libreria"))
+    }
+    return libreria = [];
+}
+
 function registrarLibro() {
     let tituloNormal = removeAccents(document.getElementById("titulo").value);
     let titulo = tituloNormal.toLowerCase();
@@ -41,13 +48,14 @@ function registrarLibro() {
     let anno = document.getElementById("año").value;
     let codigo = document.getElementById("codigo").value;
     if (validarAño(anno) && validarFormulario(titulo , autor , editorial , anno , codigo)) {
-        libreria.push(new Libro ( titulo , autor , editorial , anno , codigo ));
+        biblioteca.push(new Libro ( titulo , autor , editorial , anno , codigo ));
+        localStorage.setItem( "libreria" , JSON.stringify(libreria));
         alert(`Libro registrado con exito`);
     }
 }
 
 function agregarFila() {
-    for( let libro of libreria) {
+    for( let libro of JSON.parse(localStorage.getItem("libreria"))) {
         tab.innerHTML = tab.innerHTML +
         `<tr>
             <td>${(libro.titulo.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase()))}</td>
@@ -65,8 +73,9 @@ function generarTabla() {
 }
 
 function validarBusqueda(titulo , autor , editorial , anno , codigo) {
+
     if (titulo) {
-        let libreriaFiltrada = libreria.filter(x => (x.titulo === titulo));
+        let libreriaFiltrada = biblioteca.filter(x => (x.titulo === titulo));
         if (libreriaFiltrada.length === 0) {
             alert(`Su busqueda no produjo resultados`);
         }
@@ -74,7 +83,7 @@ function validarBusqueda(titulo , autor , editorial , anno , codigo) {
         return true
     }
     if (autor) {
-        let libreriaFiltrada = libreria.filter(x => x.autor === autor);
+        let libreriaFiltrada = biblioteca.filter(x => x.autor === autor);
         if (libreriaFiltrada.length === 0) {
             alert(`Su busqueda no produjo resultados`);
         }
@@ -82,7 +91,7 @@ function validarBusqueda(titulo , autor , editorial , anno , codigo) {
         return true
     }
     if (editorial) {
-        let libreriaFiltrada = libreria.filter(x => x.editorial === editorial);
+        let libreriaFiltrada = biblioteca.filter(x => x.editorial === editorial);
         if (libreriaFiltrada.length === 0) {
             alert(`Su busqueda no produjo resultados`);
         }
@@ -90,7 +99,7 @@ function validarBusqueda(titulo , autor , editorial , anno , codigo) {
         return true
     }
     if (anno) {
-        let libreriaFiltrada = libreria.filter(x => x.anno === anno);
+        let libreriaFiltrada = biblioteca.filter(x => x.anno === anno);
         if (libreriaFiltrada.length === 0) {
             alert(`Su busqueda no produjo resultados`);
         }
@@ -98,7 +107,7 @@ function validarBusqueda(titulo , autor , editorial , anno , codigo) {
         return true
     }
     if (codigo) {
-        let libreriaFiltrada = libreria.filter(x => x.codigo === codigo);
+        let libreriaFiltrada = biblioteca.filter(x => x.codigo === codigo);
         if (libreriaFiltrada.length === 0) {
             alert(`Su busqueda no produjo resultados`);
         }
@@ -133,4 +142,9 @@ function generarTablaBusqueda(libreriaFiltrada) {
             <td>${(libro.codigo)}</td>
         </tr>`;
     }
+}
+
+function limpiarMemoria() {
+    tab.innerHTML = "";
+    localStorage.clear();
 }
