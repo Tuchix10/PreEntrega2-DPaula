@@ -43,7 +43,6 @@ function registrarLibro() {
     if (validarAño(anno) && validarFormulario(titulo , autor , editorial , anno , codigo)) {
         libreria.push(new Libro ( titulo , autor , editorial , anno , codigo ));
         alert(`Libro registrado con exito`);
-        console.log(libreria);
     }
 }
 
