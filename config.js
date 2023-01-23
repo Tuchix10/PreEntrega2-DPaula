@@ -120,7 +120,6 @@ function busqueda() {
     let anno = document.getElementById("año-busqueda").value;
     let codigo = document.getElementById("codigo-busqueda").value;
     validarBusqueda(titulo , autor , editorial , anno , codigo);
-    console.log(typeof(titulo));
 }
 
 function generarTablaBusqueda(libreriaFiltrada) {
