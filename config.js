@@ -1,5 +1,5 @@
 const tab = document.getElementById("tab");
-const biblioteca = validarBaseDeDatos();
+let biblioteca = validarBaseDeDatos();
 
 class Libro {
     constructor( titulo , autor , editorial , año , codigo) {
@@ -10,6 +10,8 @@ class Libro {
         this.codigo = codigo;
     }
 }
+
+// Validaciones 
 
 const removeAccents = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -33,10 +35,19 @@ function validarAño(anno) {
 
 function validarBaseDeDatos() {
     if (localStorage.length != 0) {
-        return libreria = JSON.parse(localStorage.getItem("libreria"))
+        return JSON.parse(localStorage.getItem("libreria"))
     }
-    return libreria = [];
+    return [];
 }
+
+function validaciones(titulo , autor , editorial , anno , codigo) {
+    if (validarAño(anno) && validarFormulario(titulo , autor , editorial , anno , codigo)) {
+        return true;
+    }
+    return false;
+}
+
+// Registro
 
 function registrarLibro() {
     let tituloNormal = removeAccents(document.getElementById("titulo").value);
@@ -47,9 +58,9 @@ function registrarLibro() {
     let editorial = editorialNormal.toLowerCase();
     let anno = document.getElementById("año").value;
     let codigo = document.getElementById("codigo").value;
-    if (validarAño(anno) && validarFormulario(titulo , autor , editorial , anno , codigo)) {
+    if (validaciones(titulo , autor , editorial , anno , codigo)) {
         biblioteca.push(new Libro ( titulo , autor , editorial , anno , codigo ));
-        localStorage.setItem( "libreria" , JSON.stringify(libreria));
+        localStorage.setItem( "libreria" , JSON.stringify(biblioteca));
         alert(`Libro registrado con exito`);
     }
 }
@@ -68,9 +79,28 @@ function agregarFila() {
 }
 
 function generarTabla() {
-    tab.innerHTML = "";
-    agregarFila();
+    if (biblioteca.length > 0) {
+        tab.innerHTML = "";
+        agregarFila();
+        return
+    }
+    alert(`No hay elementos para mostrar`);
 }
+
+// Borrar Elemento
+
+function borrarElemento() {
+    tab.innerHTML = "";
+    if (biblioteca.length > 0) {
+        biblioteca.pop();
+        localStorage.setItem( "libreria" , JSON.stringify(biblioteca));
+        alert(`Libro borrado con exito`);
+        return
+    }
+    alert(`Nada para borrar`);
+}
+
+// Busqueda
 
 function validarBusqueda(titulo , autor , editorial , anno , codigo) {
 
@@ -144,7 +174,10 @@ function generarTablaBusqueda(libreriaFiltrada) {
     }
 }
 
+// Limpiar Memoria
+
 function limpiarMemoria() {
     tab.innerHTML = "";
     localStorage.clear();
+    biblioteca = [];
 }
